@@ -296,6 +296,7 @@ instances:
     security_groups:
       - BastionSG
       - OpenEverythingSG
+      - OpenIdMports
 
   - name: "openscap"
     count: 1
@@ -316,30 +317,6 @@ instances:
         size: 20
     security_groups:
       - BastionSG
-      - OpenEverythingSG
-      - RemoteDesktopRDPSG
-      - RemoteDesktopVNCSG
-
-  - name: "idmserver"
-    count: 1
-    unique: true
-    public_dns: true
-    dns_loadbalancer: false
-    image: "{{ bastion_instance_image }}"
-    flavor: "{{ bastion_instance_type }}"
-    tags:
-      - key: "AnsibleGroup"
-        value: "idmserver"
-      - key: "ostype"
-        value: "linux"
-      - key: "instance_filter"
-        value: "{{ env_type }}-{{ email }}"
-    volumes:
-      - name: '/dev/sda1'
-        size: 20
-    security_groups:
-      - BastionSG
-      - OpenIdMports
       - OpenEverythingSG
       - RemoteDesktopRDPSG
       - RemoteDesktopVNCSG

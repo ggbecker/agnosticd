@@ -10,7 +10,6 @@
 - name: Configure graphical mode for OpenSCAP and IdM
   hosts:
     - openscap
-    - idmserver
   become: true
   roles:
     - role: rhel-graphical
